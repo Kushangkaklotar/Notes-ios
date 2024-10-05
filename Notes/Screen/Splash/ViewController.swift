@@ -12,7 +12,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeScreen") as? HomeScreen {
+            let storyboard = UIStoryboard(name: "Notes", bundle: nil)
+            if let vc = storyboard.instantiateViewController(withIdentifier: "HomeScreen") as? HomeScreen {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

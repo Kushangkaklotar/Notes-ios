@@ -20,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func navigation() {
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-        //let nav1 = UINavigationController()
-        let mainView = ViewController(nibName: nil, bundle: nil)
-        navVc.viewControllers = [mainView]
-        self.window!.rootViewController = navVc
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let mainController = ViewController() as ViewController
+        let navigationController = UINavigationController(rootViewController: mainController)
+        navigationController.navigationBar.isHidden = true
+        self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
 }
