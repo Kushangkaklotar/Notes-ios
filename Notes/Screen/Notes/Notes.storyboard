@@ -22,9 +22,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UUK-iJ-GKY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UUK-iJ-GKY">
                                 <rect key="frame" x="10" y="119.66666666666669" width="373" height="732.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="h7s-I5-gLY"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="7eY-uW-S1s"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -39,13 +43,89 @@
                             <constraint firstAttribute="bottom" secondItem="UUK-iJ-GKY" secondAttribute="bottom" id="xCd-IQ-bIq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="notesTableView" destination="UUK-iJ-GKY" id="hH8-5a-FEO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="275.57251908396944" y="-28.169014084507044"/>
         </scene>
+        <!--Note Screen-->
+        <scene sceneID="ydC-iI-E1Z">
+            <objects>
+                <viewController storyboardIdentifier="NoteScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iud-Oj-LqQ" customClass="NoteScreen" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eUr-BI-X7c">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l39-wI-hK3">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Note" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fwp-iu-sxK">
+                                        <rect key="frame" x="10" y="156.66666666666669" width="373" height="685.33333333333326"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" Note name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gpo-bF-lpC">
+                                        <rect key="frame" x="10" y="109" width="373" height="37.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyo-0q-d1I">
+                                        <rect key="frame" x="10" y="69" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="7EF-br-iwS"/>
+                                            <constraint firstAttribute="width" constant="30" id="7xn-f0-di6"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="back_ic"/>
+                                        <connections>
+                                            <action selector="onBAck:" destination="iud-Oj-LqQ" eventType="touchUpInside" id="etb-kT-idC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="fwp-iu-sxK" firstAttribute="trailing" secondItem="gpo-bF-lpC" secondAttribute="trailing" id="1KF-jC-ly6"/>
+                                    <constraint firstItem="fwp-iu-sxK" firstAttribute="leading" secondItem="gpo-bF-lpC" secondAttribute="leading" id="KLP-xG-eNo"/>
+                                    <constraint firstItem="pyo-0q-d1I" firstAttribute="leading" secondItem="l39-wI-hK3" secondAttribute="leading" constant="10" id="R2H-JL-Y0t"/>
+                                    <constraint firstItem="fwp-iu-sxK" firstAttribute="top" secondItem="gpo-bF-lpC" secondAttribute="bottom" constant="10" id="YA2-Cb-N0z"/>
+                                    <constraint firstItem="gpo-bF-lpC" firstAttribute="leading" secondItem="l39-wI-hK3" secondAttribute="leading" constant="10" id="a1N-V3-6VC"/>
+                                    <constraint firstItem="gpo-bF-lpC" firstAttribute="top" secondItem="pyo-0q-d1I" secondAttribute="bottom" constant="10" id="moc-Ye-rCa"/>
+                                    <constraint firstAttribute="trailing" secondItem="gpo-bF-lpC" secondAttribute="trailing" constant="10" id="upT-y0-zcd"/>
+                                    <constraint firstAttribute="bottom" secondItem="fwp-iu-sxK" secondAttribute="bottom" constant="10" id="vmF-89-V8N"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DUc-0N-WIN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="l39-wI-hK3" firstAttribute="top" secondItem="eUr-BI-X7c" secondAttribute="top" id="4YB-42-wn6"/>
+                            <constraint firstItem="l39-wI-hK3" firstAttribute="leading" secondItem="DUc-0N-WIN" secondAttribute="leading" id="CWh-OB-oEo"/>
+                            <constraint firstAttribute="bottom" secondItem="l39-wI-hK3" secondAttribute="bottom" id="ECJ-ZX-UKQ"/>
+                            <constraint firstItem="DUc-0N-WIN" firstAttribute="trailing" secondItem="l39-wI-hK3" secondAttribute="trailing" id="LiL-YK-C7d"/>
+                            <constraint firstItem="pyo-0q-d1I" firstAttribute="top" secondItem="DUc-0N-WIN" secondAttribute="top" constant="10" id="Tlo-Yh-RQo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backGroundView" destination="l39-wI-hK3" id="xjV-fl-vQe"/>
+                        <outlet property="nameTextField" destination="gpo-bF-lpC" id="pdq-3E-NRV"/>
+                        <outlet property="noteTextView" destination="fwp-iu-sxK" id="4uG-Jh-tV7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FJM-vv-gk1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="965.64885496183206" y="-28.169014084507044"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="back_ic" width="512" height="392"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
