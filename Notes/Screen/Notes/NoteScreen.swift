@@ -20,13 +20,18 @@ class NoteScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.managedata()
+        self.initialise()
     }
     
     // mark: - Function's
+    func initialise(){
+    }
+    
     func managedata(){
         self.nameTextField.text = notes?.title ?? ""
         self.noteTextView.text = notes?.notes ?? ""
     }
+    
     @IBAction func onBAck(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }

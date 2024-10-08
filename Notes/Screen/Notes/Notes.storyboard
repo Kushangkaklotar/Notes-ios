@@ -64,7 +64,7 @@
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Note" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fwp-iu-sxK">
                                         <rect key="frame" x="10" y="156.66666666666669" width="373" height="685.33333333333326"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -87,7 +87,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="fwp-iu-sxK" firstAttribute="trailing" secondItem="gpo-bF-lpC" secondAttribute="trailing" id="1KF-jC-ly6"/>
                                     <constraint firstItem="fwp-iu-sxK" firstAttribute="leading" secondItem="gpo-bF-lpC" secondAttribute="leading" id="KLP-xG-eNo"/>
@@ -120,6 +120,112 @@
             </objects>
             <point key="canvasLocation" x="965.64885496183206" y="-28.169014084507044"/>
         </scene>
+        <!--Add Note Screen-->
+        <scene sceneID="rQE-XO-FhS">
+            <objects>
+                <viewController storyboardIdentifier="AddNoteScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jTv-vt-axP" customClass="AddNoteScreen" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CF4-BY-Ezn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXu-t0-UFd">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Vp-Zr-Br0">
+                                <rect key="frame" x="0.0" y="402" width="393" height="450"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Nx-vO-HA0">
+                                        <rect key="frame" x="15" y="50" width="363" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bAt-7s-tW8">
+                                                <rect key="frame" x="0.0" y="0.0" width="363" height="60"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Esa-om-5tQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="bAt-7s-tW8" secondAttribute="trailing" id="FCq-qG-R35"/>
+                                            <constraint firstItem="bAt-7s-tW8" firstAttribute="leading" secondItem="7Nx-vO-HA0" secondAttribute="leading" id="ThK-GS-kDa"/>
+                                            <constraint firstAttribute="bottom" secondItem="bAt-7s-tW8" secondAttribute="bottom" id="agO-Ft-KEN"/>
+                                            <constraint firstItem="bAt-7s-tW8" firstAttribute="top" secondItem="7Nx-vO-HA0" secondAttribute="top" id="haQ-ui-CVn"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8BE-T6-MMq">
+                                        <rect key="frame" x="15" y="140" width="363" height="200"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="..........." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B2u-ym-Ok8">
+                                                <rect key="frame" x="0.0" y="0.0" width="363" height="200"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="8lq-1W-G8D"/>
+                                            <constraint firstItem="B2u-ym-Ok8" firstAttribute="top" secondItem="8BE-T6-MMq" secondAttribute="top" id="Arr-t0-VqX"/>
+                                            <constraint firstAttribute="trailing" secondItem="B2u-ym-Ok8" secondAttribute="trailing" id="FUA-MP-ako"/>
+                                            <constraint firstAttribute="bottom" secondItem="B2u-ym-Ok8" secondAttribute="bottom" id="pKi-Sz-NeF"/>
+                                            <constraint firstItem="B2u-ym-Ok8" firstAttribute="leading" secondItem="8BE-T6-MMq" secondAttribute="leading" id="pTD-aj-WVR"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b96-NT-aBW">
+                                        <rect key="frame" x="15" y="370" width="363" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="NVo-mF-47E"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Add note"/>
+                                        <connections>
+                                            <action selector="onAddNote:" destination="jTv-vt-axP" eventType="touchUpInside" id="861-Mq-uvT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="b96-NT-aBW" firstAttribute="leading" secondItem="8BE-T6-MMq" secondAttribute="leading" id="2LE-7q-UO2"/>
+                                    <constraint firstItem="b96-NT-aBW" firstAttribute="trailing" secondItem="8BE-T6-MMq" secondAttribute="trailing" id="5ph-9N-e2x"/>
+                                    <constraint firstItem="8BE-T6-MMq" firstAttribute="trailing" secondItem="7Nx-vO-HA0" secondAttribute="trailing" id="COV-3b-Nr1"/>
+                                    <constraint firstItem="b96-NT-aBW" firstAttribute="top" secondItem="8BE-T6-MMq" secondAttribute="bottom" constant="30" id="HU9-qD-4N5"/>
+                                    <constraint firstItem="8BE-T6-MMq" firstAttribute="leading" secondItem="7Nx-vO-HA0" secondAttribute="leading" id="MCw-Pn-LD8"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Nx-vO-HA0" secondAttribute="trailing" constant="15" id="O7C-RL-mGr"/>
+                                    <constraint firstItem="7Nx-vO-HA0" firstAttribute="leading" secondItem="3Vp-Zr-Br0" secondAttribute="leading" constant="15" id="Otq-wH-efv"/>
+                                    <constraint firstItem="8BE-T6-MMq" firstAttribute="top" secondItem="7Nx-vO-HA0" secondAttribute="bottom" constant="30" id="PVq-dO-NZ8"/>
+                                    <constraint firstItem="7Nx-vO-HA0" firstAttribute="top" secondItem="3Vp-Zr-Br0" secondAttribute="top" constant="50" id="aMK-21-WmD"/>
+                                    <constraint firstAttribute="bottom" secondItem="b96-NT-aBW" secondAttribute="bottom" constant="30" id="uZV-wB-R2s"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gru-Ex-eNi"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gru-Ex-eNi" firstAttribute="trailing" secondItem="3Vp-Zr-Br0" secondAttribute="trailing" id="N8p-ht-D7d"/>
+                            <constraint firstItem="3Vp-Zr-Br0" firstAttribute="leading" secondItem="gru-Ex-eNi" secondAttribute="leading" id="QtF-WA-tL6"/>
+                            <constraint firstItem="pXu-t0-UFd" firstAttribute="top" secondItem="CF4-BY-Ezn" secondAttribute="top" id="ZEW-HO-uHJ"/>
+                            <constraint firstAttribute="bottom" secondItem="3Vp-Zr-Br0" secondAttribute="bottom" id="cCH-Pw-vnA"/>
+                            <constraint firstItem="pXu-t0-UFd" firstAttribute="leading" secondItem="gru-Ex-eNi" secondAttribute="leading" id="htK-nv-MwI"/>
+                            <constraint firstAttribute="bottom" secondItem="pXu-t0-UFd" secondAttribute="bottom" id="pBb-2s-SfN"/>
+                            <constraint firstItem="gru-Ex-eNi" firstAttribute="trailing" secondItem="pXu-t0-UFd" secondAttribute="trailing" id="ylF-Y4-coe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addNoteButton" destination="b96-NT-aBW" id="edN-5r-N9O"/>
+                        <outlet property="backgroundView" destination="3Vp-Zr-Br0" id="bEp-dj-Mbm"/>
+                        <outlet property="headingview" destination="7Nx-vO-HA0" id="g7E-9u-Sld"/>
+                        <outlet property="notesView" destination="8BE-T6-MMq" id="KtW-lf-vrP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IQo-Va-2W4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1646.5648854961833" y="-28.169014084507044"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back_ic" width="512" height="392"/>
@@ -128,6 +234,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
