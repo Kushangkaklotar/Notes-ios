@@ -9,7 +9,7 @@ import UIKit
 
 class HomeScreen: UIViewController {
 
-    // mark: - IB Outlets
+    // MARK: - IB Outlets
     @IBOutlet weak var notesTableView: UITableView!{
         didSet{
             let nib = UINib(nibName: "NotesCell", bundle: nil)
@@ -17,17 +17,35 @@ class HomeScreen: UIViewController {
         }
     }
     
-    // mark: = Variables
-    let notes = [Notes(id: 1, title: "Home", notes: "Beautiful home", time: "3:00", image: "", notesTheme: ""),
-                 Notes(id: 2, title: "kk", notes: "Kushang kaklotar", time: "4:00", image: "", notesTheme: ""),
-                 Notes(id: 3, title: "mac", notes: "Macbook air m3 ", time: "7:00", image: "", notesTheme: "")]
+    // MARK: = Variables
+    var userDefaults = UserDefaults.standard
+    var notes: [Notes] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if let savedNotesData = UserDefaults.standard.data(forKey: "Key"),
+           let savedNotes = try? JSONDecoder().decode([Notes].self, from: savedNotesData) {  // Decode as [Notes]
+            print(savedNotes)
+            for i in savedNotes {
+                self.notes.append(i)
+            }
+        }
+    }
+    @IBAction func onAdd(_ sender: Any) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "AddNoteScreen") as? AddNoteScreen {
+            vc.addNotes = { [weak self] newNote in
+                self?.notes.insert(newNote, at: 0)
+                if let encodedNotes = try? JSONEncoder().encode(self?.notes) {
+                    UserDefaults.standard.set(encodedNotes, forKey: "Key")
+                }
+                self?.notesTableView.reloadData()
+            }
+            self.present(vc, animated: true)
+        }
     }
 }
 
+    // MARK: - Tableview deligate
 extension HomeScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
