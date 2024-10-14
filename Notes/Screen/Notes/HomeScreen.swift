@@ -36,7 +36,7 @@ class HomeScreen: UIViewController {
             vc.addNotes = { [weak self] newNote in
                 self?.notes.insert(newNote, at: 0)
                 if let encodedNotes = try? JSONEncoder().encode(self?.notes) {
-                    UserDefaults.standard.set(encodedNotes, forKey: "Key")
+                    UserDefaults.standard.set(encodedNotes, forKey: "key")
                 }
                 self?.notesTableView.reloadData()
             }

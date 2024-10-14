@@ -14,7 +14,7 @@ class NoteScreen: UIViewController {
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet var backGroundView: UIView!
     
-    // mark: - Variables
+    // MARK: - Variables
     var notes: Notes?
     
     override func viewDidLoad() {
@@ -36,3 +36,5 @@ class NoteScreen: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 }
+// kushang kaklotar
+// birjesh jikadara
