@@ -36,5 +36,3 @@ class NoteScreen: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 }
-// kushang kaklotar
-// birjesh jikadara

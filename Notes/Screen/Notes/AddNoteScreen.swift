@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class AddNoteScreen: UIViewController {
 
@@ -54,17 +55,32 @@ class AddNoteScreen: UIViewController {
     }
     
     @IBAction func onAddNote(_ sender: Any) {
-        let timestamp = NSDate().timeIntervalSince1970
-        let myTimeInterval = TimeInterval(timestamp)
-        let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
-        print(time)
-        var notesArry = Notes(id: 5, title: self.headingTextField.text?.trimmingCharacters(in: .whitespaces) ?? "", notes: self.notesTextView.text?.trimmingCharacters(in: .whitespaces) ?? "", time: "", image: "", notesTheme: "")
-        self.addNotes?(notesArry)
-        
-        
-        self.dismiss(animated: true)
+        if self.validation() {
+            let timestamp = NSDate().timeIntervalSince1970
+                    let myTimeInterval = TimeInterval(timestamp)
+                    let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
+                    print(time)
+            
+            let notesArry = Notes(id: NOTES.count + 1, title: self.headingTextField.text?.trimmingCharacters(in: .whitespaces) ?? "", notes: self.notesTextView.text?.trimmingCharacters(in: .whitespaces) ?? "", time: "", image: "", notesTheme: "", isLiked: false, isDeleted: false)
+                self.addNotes?(notesArry)
+                self.dismiss(animated: true)
+        }
     }
     @IBAction func onCancel(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+}
+
+// MARK: - Functin's
+extension AddNoteScreen {
+    func validation() -> Bool{
+        if self.headingTextField.text == "" {
+            Utility.errorAlert(message: "Please enter heading", view: self.view)
+            return false
+        } else if self.notesTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            Utility.errorAlert(message: "Please enter note", view: self.view)
+            return false
+        }
+        return true
     }
 }

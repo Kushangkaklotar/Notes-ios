@@ -7,7 +7,6 @@
 
 import Foundation
 
-class Constant {
-    
-    static let USER_DEFAULT_KEY = "USER_DATA"
-}
+let USER_DEFAULT_KEY = "USER_DATA"      // User default kry
+
+var NOTES: [Notes] = []     // Notes array

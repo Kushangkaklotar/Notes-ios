@@ -19,48 +19,69 @@ class HomeScreen: UIViewController {
     
     // MARK: = Variables
     var userDefaults = UserDefaults.standard
-    var notes: [Notes] = []
+    var avalableNotes: [Notes] = []
     
+    
+    // MARK: - Method
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let savedNotesData = UserDefaults.standard.data(forKey: "Key"),
+        if let savedNotesData = UserDefaults.standard.data(forKey: USER_DEFAULT_KEY),
            let savedNotes = try? JSONDecoder().decode([Notes].self, from: savedNotesData) {  // Decode as [Notes]
-            print(savedNotes)
             for i in savedNotes {
-                self.notes.append(i)
+                NOTES.append(i)
             }
         }
+        self.avalableNotes = NOTES.filter{ $0.isDeleted == false }
+        let deletedNote = NOTES.filter{ $0.isDeleted == true }
+        print("Notes : \(self.avalableNotes)")
+        print("Deleted Notes : \(deletedNote)")
     }
+    
+    // MARK: - IB Action
     @IBAction func onAdd(_ sender: Any) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "AddNoteScreen") as? AddNoteScreen {
             vc.addNotes = { [weak self] newNote in
-                self?.notes.insert(newNote, at: 0)
-                if let encodedNotes = try? JSONEncoder().encode(self?.notes) {
-                    UserDefaults.standard.set(encodedNotes, forKey: "key")
+                NOTES.insert(newNote, at: 0)
+                self?.avalableNotes.insert(newNote, at: 0)
+                if let encodedNotes = try? JSONEncoder().encode(NOTES) {
+                    UserDefaults.standard.set(encodedNotes, forKey: USER_DEFAULT_KEY)
                 }
                 self?.notesTableView.reloadData()
             }
             self.present(vc, animated: true)
         }
     }
+    
 }
 
     // MARK: - Tableview deligate
 extension HomeScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notes.count
+        self.avalableNotes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotesCell") as! NotesCell
-        cell.dataSet = self.notes[indexPath.row]
+        cell.dataSet = self.avalableNotes[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "NoteScreen") as? NoteScreen {
-            vc.notes = self.notes[indexPath.row]
+            vc.notes = self.avalableNotes[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.avalableNotes[indexPath.row].isDeleted = true
+            NOTES[indexPath.row].isDeleted = true
+            self.avalableNotes.remove(at: indexPath.row)
+            if let encodedNotes = try? JSONEncoder().encode(NOTES) {
+                UserDefaults.standard.set(encodedNotes, forKey: USER_DEFAULT_KEY)
+            }
+            self.notesTableView.reloadData()
         }
     }
 }
