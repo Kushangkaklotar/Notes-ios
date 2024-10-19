@@ -19,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        if let encodedNotes = try? JSONEncoder().encode(NOTES) {
+            UserDefaults.standard.set(encodedNotes, forKey: USER_DEFAULT_KEY)
+        }
+    }
+    
     func navigation() {
         window = UIWindow(frame: UIScreen.main.bounds)
         let mainController = ViewController() as ViewController

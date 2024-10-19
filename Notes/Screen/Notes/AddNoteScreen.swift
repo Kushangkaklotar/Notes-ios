@@ -19,6 +19,7 @@ class AddNoteScreen: UIViewController {
     @IBOutlet weak var headingTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
     
     //MARK: - Variables
     var addNotes:((Notes)-> Void)?
@@ -68,6 +69,10 @@ class AddNoteScreen: UIViewController {
     }
     @IBAction func onCancel(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+    @IBAction func onLike(_ sender: Any) {
+        self.likeButton.isSelected.toggle()
+        self.likeButton.setImage(UIImage(named: self.likeButton.isSelected == true ? "hart_fill_ic" : "hart_ic"), for: .normal)
     }
 }
 

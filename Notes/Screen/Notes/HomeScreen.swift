@@ -69,6 +69,11 @@ extension HomeScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "NoteScreen") as? NoteScreen {
             vc.notes = self.avalableNotes[indexPath.row]
+            vc.doneClick = { [weak self] indexValue in
+                self?.avalableNotes[indexPath.row].title = indexValue.title
+                self?.avalableNotes[indexPath.row].notes = indexValue.notes
+                self?.notesTableView.reloadData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -78,9 +83,6 @@ extension HomeScreen: UITableViewDelegate, UITableViewDataSource {
             self.avalableNotes[indexPath.row].isDeleted = true
             NOTES[indexPath.row].isDeleted = true
             self.avalableNotes.remove(at: indexPath.row)
-            if let encodedNotes = try? JSONEncoder().encode(NOTES) {
-                UserDefaults.standard.set(encodedNotes, forKey: USER_DEFAULT_KEY)
-            }
             self.notesTableView.reloadData()
         }
     }
