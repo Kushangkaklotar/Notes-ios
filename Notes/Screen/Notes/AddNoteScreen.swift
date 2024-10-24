@@ -24,6 +24,7 @@ class AddNoteScreen: UIViewController {
     //MARK: - Variables
     var addNotes:((Notes)-> Void)?
     
+    // MARK: - Method's
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialise()

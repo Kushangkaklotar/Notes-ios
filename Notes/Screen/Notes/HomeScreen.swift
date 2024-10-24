@@ -16,10 +16,16 @@ class HomeScreen: UIViewController {
             self.notesTableView.register(nib, forCellReuseIdentifier: "NotesCell")
         }
     }
+    @IBOutlet weak var favnotesCollection: UICollectionView! {
+        didSet{
+            self.favnotesCollection.register(UINib(nibName: "NotesCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "NotesCollectionViewCell")
+        }
+    }
     
     // MARK: = Variables
     var userDefaults = UserDefaults.standard
     var avalableNotes: [Notes] = []
+    var favNotes: [Notes] = []
     
     
     // MARK: - Method
@@ -32,11 +38,13 @@ class HomeScreen: UIViewController {
             }
         }
         self.avalableNotes = NOTES.filter{ $0.isDeleted == false }
-        let deletedNote = NOTES.filter{ $0.isDeleted == true }
-        print("Notes : \(self.avalableNotes)")
-        print("Deleted Notes : \(deletedNote)")
+        self.favNotes = NOTES.filter{ $0.isLiked == true }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("Values")
+    }
     // MARK: - IB Action
     @IBAction func onAdd(_ sender: Any) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "AddNoteScreen") as? AddNoteScreen {
@@ -84,6 +92,23 @@ extension HomeScreen: UITableViewDelegate, UITableViewDataSource {
             NOTES[indexPath.row].isDeleted = true
             self.avalableNotes.remove(at: indexPath.row)
             self.notesTableView.reloadData()
+            if let encodedNotes = try? JSONEncoder().encode(NOTES) {
+                UserDefaults.standard.set(encodedNotes, forKey: USER_DEFAULT_KEY)
+                Utility.successAlert(message: "Notes deleted", view: self.view)
+            }
         }
+    }
+}
+
+// MARK: - Collection view cell
+extension HomeScreen: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.favNotes.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NotesCollectionViewCell", for: indexPath) as! NotesCollectionViewCell
+        cell.dataSet = self.favNotes[indexPath.row]
+        return cell
     }
 }
