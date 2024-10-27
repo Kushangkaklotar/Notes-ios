@@ -9,10 +9,14 @@ import UIKit
 
 class NotesCell: UITableViewCell {
 
-    // mark: - IB Outlets
+    // MARK: - IB Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var notesLabel: UILabel!
     @IBOutlet weak var backGroundView: UIView!
+    @IBOutlet weak var likeButton: UIButton!
+    
+    //MARK: - Variables
+    var isliked: ((Bool)-> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +40,18 @@ class NotesCell: UITableViewCell {
         didSet{
             self.nameLabel.text = dataSet?.title
             self.notesLabel.text = dataSet?.notes
+            if dataSet?.isLiked == true {
+                self.likeButton.setImage(UIImage(named: "hart_fill_ic"), for: .normal)
+                self.likeButton.isSelected = true
+            } else {
+                self.likeButton.setImage(UIImage(named: "hart_ic"), for: .normal)
+                self.likeButton.isSelected = false
+            }
         }
+    }
+    @IBAction func onLike(_ sender: UIButton) {
+//        self.likeButton.isSelected.toggle()
+        self.isliked?(self.likeButton.isSelected == true ? false : true)
+//        self.likeButton.isSelected.toggle()
     }
 }

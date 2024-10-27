@@ -38,4 +38,10 @@ class Utility: NSObject{
         ToastManager.shared.isTapToDismissEnabled = true
         view.makeToast(message, duration: 3.0, position: .top, style: style)
     }
+    
+    class func saveData(){
+        if let encodedNotes = try? JSONEncoder().encode(NOTES) {
+            UserDefaults.standard.set(encodedNotes, forKey: USER_DEFAULT_KEY)
+        }
+    }
 }

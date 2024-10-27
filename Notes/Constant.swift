@@ -7,6 +7,6 @@
 
 import Foundation
 
-let USER_DEFAULT_KEY = "USER_DATA"      // User default kry
+let USER_DEFAULT_KEY = "USER_DATA"      // User default key
 
 var NOTES: [Notes] = []     // Notes array

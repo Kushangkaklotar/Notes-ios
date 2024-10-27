@@ -63,7 +63,7 @@ class AddNoteScreen: UIViewController {
                     let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
                     print(time)
             
-            let notesArry = Notes(id: NOTES.count + 1, title: self.headingTextField.text?.trimmingCharacters(in: .whitespaces) ?? "", notes: self.notesTextView.text?.trimmingCharacters(in: .whitespaces) ?? "", time: "", image: "", notesTheme: "", isLiked: false, isDeleted: false)
+            let notesArry = Notes(id: NOTES.count + 1, title: self.headingTextField.text?.trimmingCharacters(in: .whitespaces) ?? "", notes: self.notesTextView.text?.trimmingCharacters(in: .whitespaces) ?? "", time: "", image: "", notesTheme: "", isLiked: self.likeButton.isSelected == true ? true : false, isDeleted: false)
                 self.addNotes?(notesArry)
                 self.dismiss(animated: true)
         }

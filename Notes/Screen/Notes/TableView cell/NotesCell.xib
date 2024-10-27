@@ -21,27 +21,42 @@
                         <rect key="frame" x="5" y="10" width="412" height="121"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygP-0g-mEe">
-                                <rect key="frame" x="10" y="4.9999999999999982" width="392" height="26.333333333333329"/>
+                                <rect key="frame" x="10" y="5" width="369" height="26"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full notes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIe-uJ-aB0">
-                                <rect key="frame" x="10" y="39.333333333333336" width="392" height="18"/>
+                                <rect key="frame" x="10" y="39" width="400" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yww-fX-nFj">
+                                <rect key="frame" x="384" y="5" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="26" id="5uw-fq-AAK"/>
+                                    <constraint firstAttribute="height" constant="26" id="8bY-Sx-0of"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="hart_ic"/>
+                                <connections>
+                                    <action selector="onLike:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="689-SO-8Pp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
+                            <constraint firstItem="Yww-fX-nFj" firstAttribute="trailing" secondItem="dIe-uJ-aB0" secondAttribute="trailing" id="7qQ-Dj-vbs"/>
                             <constraint firstItem="ygP-0g-mEe" firstAttribute="top" secondItem="TGq-Sq-3yl" secondAttribute="top" constant="5" id="GPM-sC-bT8"/>
-                            <constraint firstAttribute="trailing" secondItem="ygP-0g-mEe" secondAttribute="trailing" constant="10" id="GfO-2b-0E5"/>
                             <constraint firstItem="dIe-uJ-aB0" firstAttribute="top" secondItem="ygP-0g-mEe" secondAttribute="bottom" constant="8" id="PjS-mM-3lR"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dIe-uJ-aB0" secondAttribute="bottom" constant="5" id="bjT-Yt-vYG"/>
                             <constraint firstItem="dIe-uJ-aB0" firstAttribute="leading" secondItem="ygP-0g-mEe" secondAttribute="leading" id="dp9-GM-UeH"/>
+                            <constraint firstItem="Yww-fX-nFj" firstAttribute="leading" secondItem="ygP-0g-mEe" secondAttribute="trailing" constant="5" id="eIE-LF-eVB"/>
+                            <constraint firstAttribute="trailing" secondItem="Yww-fX-nFj" secondAttribute="trailing" constant="2" id="gLs-my-XCM"/>
+                            <constraint firstItem="Yww-fX-nFj" firstAttribute="bottom" secondItem="ygP-0g-mEe" secondAttribute="bottom" id="ozQ-ym-CP4"/>
                             <constraint firstItem="ygP-0g-mEe" firstAttribute="leading" secondItem="TGq-Sq-3yl" secondAttribute="leading" constant="10" id="v4g-Hp-x0z"/>
-                            <constraint firstItem="dIe-uJ-aB0" firstAttribute="trailing" secondItem="ygP-0g-mEe" secondAttribute="trailing" id="zxw-Ye-qSq"/>
+                            <constraint firstItem="Yww-fX-nFj" firstAttribute="top" secondItem="ygP-0g-mEe" secondAttribute="top" id="wdo-nh-Pdb"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -56,6 +71,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="backGroundView" destination="TGq-Sq-3yl" id="Ruv-pX-Ott"/>
+                <outlet property="likeButton" destination="Yww-fX-nFj" id="efA-eA-4XS"/>
                 <outlet property="nameLabel" destination="ygP-0g-mEe" id="wzO-YF-WgF"/>
                 <outlet property="notesLabel" destination="dIe-uJ-aB0" id="c2R-iq-DkE"/>
             </connections>
@@ -63,6 +79,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="hart_ic" width="21" height="19.666666030883789"/>
         <systemColor name="systemGray5Color">
             <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
